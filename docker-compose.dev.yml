@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+      - 1935:1935
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: npm run debug
+    
