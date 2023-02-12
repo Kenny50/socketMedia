@@ -9,7 +9,4 @@ const server = express().listen(PORT, () => {
 
 const wss = new WebSocket.Server({ server });
 
-function installSocket(wss) {
-    
-}
 installSocket(wss);
