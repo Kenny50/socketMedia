@@ -2,6 +2,7 @@ const express = require('express');
 const WebSocket = require('ws');
 const installSocket = require('./src/socket/install_socket');
 const installFolderWatcher = require('./src/folder_watcher/folder_watcher');
+const installMediaServer = require('./src/node_media_server/media_server');
 const PORT = 3000
 
 const app = express();
@@ -15,3 +16,4 @@ const wss = new WebSocket.Server({ server });
 
 installFolderWatcher(__dirname);
 installSocket(wss);
+installMediaServer();

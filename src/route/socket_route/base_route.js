@@ -15,6 +15,9 @@ function BaseRoute(path, fun) {
     this.installRoute = function(ws){
         this.addClient(ws);
         fun(ws);
+    },
+    this.getClient = function() {
+        return new Set(clients);
     }
 }
 
