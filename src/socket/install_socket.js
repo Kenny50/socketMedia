@@ -38,6 +38,7 @@ function installSocket(wss) {
             imageWithListDataRouteHost.removeClient(ws);
             pairImageRouteHost.removeClient(ws);
             singleImageWithDetailRouteHost.removeClient(ws);
+            streamRouteHost.removeClient(ws);
         })
 
     })

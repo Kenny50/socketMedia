@@ -25,11 +25,18 @@ function startRtmpLiveStream() {
     })
 
 }
+
+// todo check user flow, changed trigger condition
 function streamRoute(ws) {
-    if (streamRouteHost.getClient().size == 2) {
+    console.log(streamRouteHost.getClient().size)
+    if (streamRouteHost.getClient().size == 3) {
         console.log("start stream")
         startRtmpLiveStream()
     }
+    ws.on('message', function incoming(message) {
+        console.log(message)
+        streamRouteHost.boradcasting(message)
+    });
 }
 
 const streamRouteHost = new BaseRoute('/stream', streamRoute);
