@@ -1,7 +1,10 @@
-const pairImageRouteHost = require('../route/pair_image_route/pair_image_route');
-const singleImageWithDetailRouteHost = require('../route/single_image_with_detail_route/single_image_with_detail_route');
-const imageWithListDataRouteHost = require('../route/image_with_list_data.js/imageWithListData');
-const eventRouteHost = require('../route/event_route/eventRoute');
+const driverAssistanceSensingRoute = require('../route/driver_assistance_sensing/driver_assistance_sensing');
+const eventAssisatnceDetectionRouteHost = require('../route/event_assistance_detection_route/event_assistance_detection_route');
+const illegalParkingEventRouteHost = require('../route/illegal_parking_event_route/illegal_parking_event_route');
+const busParkingEventRouteHost = require('../route/bus_parking_event_route/bus_parking_event_route');
+const gnssUpdateEventRouteHost = require('../route/gnss_route/gnss_update_event_route');
+const parkSpaceDetectionRouteHost = require('../route/park_space_detection/park_space_detection_route');
+const eventRouteHost = require('../route/event_route/event_route');
 const streamRouteHost = require('../route/stream_route/stream_route')
 
 function installSocket(wss) {
@@ -12,14 +15,23 @@ function installSocket(wss) {
 
         switch (path) {
 
-            case pairImageRouteHost.path:
-                pairImageRouteHost.installRoute(ws);
+            case driverAssistanceSensingRoute.path:
+                driverAssistanceSensingRoute.installRoute(ws);
                 break;
-            case singleImageWithDetailRouteHost.path:
-                singleImageWithDetailRouteHost.installRoute(ws);
+            case eventAssisatnceDetectionRouteHost.path:
+                eventAssisatnceDetectionRouteHost.installRoute(ws);
                 break;
-            case imageWithListDataRouteHost.path:
-                imageWithListDataRouteHost.installRoute(ws);
+            case illegalParkingEventRouteHost.path:
+                illegalParkingEventRouteHost.installRoute(ws);
+                break;
+            case busParkingEventRouteHost.path:
+                busParkingEventRouteHost.installRoute(ws);
+                break;
+            case gnssUpdateEventRouteHost.path:
+                gnssUpdateEventRouteHost.installRoute(ws);
+                break;
+            case parkSpaceDetectionRouteHost.path:
+                parkSpaceDetectionRouteHost.installRoute(ws);
                 break;
             case eventRouteHost.path:
                 eventRouteHost.installRoute(ws);
@@ -35,9 +47,12 @@ function installSocket(wss) {
         ws.on('close', () => {
             console.log('Close connected')
             eventRouteHost.removeClient(ws);
-            imageWithListDataRouteHost.removeClient(ws);
-            pairImageRouteHost.removeClient(ws);
-            singleImageWithDetailRouteHost.removeClient(ws);
+            illegalParkingEventRouteHost.removeClient(ws);
+            eventAssisatnceDetectionRouteHost.removeClient(ws);
+            busParkingEventRouteHost.removeClient(ws);
+            driverAssistanceSensingRoute.removeClient(ws);
+            parkSpaceDetectionRouteHost.removeClient(ws);
+            gnssUpdateEventRouteHost.removeClient(ws);
             streamRouteHost.removeClient(ws);
         })
 

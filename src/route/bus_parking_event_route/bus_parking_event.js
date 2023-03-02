@@ -1,4 +1,4 @@
-function BusParkEvent(image, name, timestamp, lat, long){
+function BusParkingEvent(image, name, timestamp, lat, long){
     this.image = image,
     this.name = name,
     this.timestamp = timestamp,

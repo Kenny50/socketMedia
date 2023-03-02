@@ -5,6 +5,6 @@ function driverAssistanceSensing(ws){
     
 }
 
-const driverAssistanceSensingRoute = new BaseRoute('/pair', driverAssistanceSensing)
+const driverAssistanceSensingRoute = new BaseRoute('/driver-assistance-sensing', driverAssistanceSensing)
 
 module.exports = driverAssistanceSensingRoute;
