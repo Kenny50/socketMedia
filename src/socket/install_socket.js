@@ -5,7 +5,6 @@ const busParkingEventRouteHost = require('../route/bus_parking_event_route/bus_p
 const gnssUpdateEventRouteHost = require('../route/gnss_route/gnss_update_event_route');
 const parkSpaceDetectionRouteHost = require('../route/park_space_detection/park_space_detection_route');
 const eventRouteHost = require('../route/event_route/event_route');
-const streamRouteHost = require('../route/stream_route/stream_route')
 
 function installSocket(wss) {
     wss.on('connection', (ws, req) => {
@@ -36,9 +35,6 @@ function installSocket(wss) {
             case eventRouteHost.path:
                 eventRouteHost.installRoute(ws);
                 break;
-            case streamRouteHost.path:
-                streamRouteHost.installRoute(ws);
-                break;
             default:
                 ws.close();
                 break;
@@ -53,7 +49,6 @@ function installSocket(wss) {
             driverAssistanceSensingRoute.removeClient(ws);
             parkSpaceDetectionRouteHost.removeClient(ws);
             gnssUpdateEventRouteHost.removeClient(ws);
-            streamRouteHost.removeClient(ws);
         })
 
     })

@@ -3,7 +3,6 @@ const WebSocket = require('ws');
 const Redis = require("ioredis");
 
 const installSocket = require('./src/socket/install_socket');
-const installMediaServer = require('./src/node_media_server/media_server');
 const installRedisPubSub = require('./src/redis/redis')
 const PORT = 3000
 
@@ -22,5 +21,4 @@ const redis = new Redis({
 const wss = new WebSocket.Server({ server });
 
 installSocket(wss);
-installMediaServer();
 installRedisPubSub(redis);
