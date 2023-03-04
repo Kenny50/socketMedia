@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  redis:
+    image: redis:6.2.10
+    ports:
+      - "6379:6379"
+
+  pub-simulator:
+    image: linker-modelt-redis-pub-simulator:v1.0
+    network_mode: host
+
+  socket-redis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: socket_redis
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - pub-simulator
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+

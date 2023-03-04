@@ -15,7 +15,7 @@ const server = app.listen(PORT, () => {
 
 const redis = new Redis({
     port: 6379, // Redis port
-    host: "127.0.0.1", // Redis host
+    host: "host.docker.internal", // Redis host
 });
 
 const wss = new WebSocket.Server({ server });
