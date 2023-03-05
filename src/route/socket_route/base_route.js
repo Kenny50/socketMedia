@@ -1,23 +1,26 @@
-function BaseRoute(path, fun) {
-    let clients = new Set()
-    this.path = path,
-    this.addClient = function (ws){
-        clients.add(ws);
-    },
-    this.removeClient = function (ws){
-        clients.delete(ws);
-    },
-    this.boradcasting = function (message){
-        clients.forEach(client => {
+class BaseRoute {
+    #clients = new Set();
+    constructor(path, fun) {
+        this.path = path;
+        this.fun = fun;
+    }
+    addClient(ws) {
+        this.#clients.add(ws);
+    }
+    removeClient(ws) {
+        this.#clients.delete(ws);
+    }
+    boradcasting(message) {
+        this.#clients.forEach(client => {
             client.send(message);
         });
-    },
-    this.installRoute = function(ws){
+    }
+    installRoute(ws) {
         this.addClient(ws);
-        fun(ws);
-    },
-    this.getClient = function() {
-        return new Set(clients);
+        this.fun(ws);
+    }
+    getClient() {
+        return new Set(this.#clients);
     }
 }
 
