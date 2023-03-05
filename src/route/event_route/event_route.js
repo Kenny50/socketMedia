@@ -2,7 +2,7 @@ const BaseRoute = require("../socket_route/base_route");
 
 function eventRoute(ws){
     ws.on('message', function incoming(message) {
-        eventRouteHost.boradcasting(message)
+        eventRouteHost.boradcasting(message.toString())
     });
 }
 
