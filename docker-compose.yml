@@ -7,7 +7,7 @@ services:
       - "6379:6379"
 
   pub-simulator:
-    image: linker-modelt-redis-pub-simulator:v1.0
+    image: linker-modelt-redis-pub-simulator:v2.0
     network_mode: host
 
   socket-redis:
