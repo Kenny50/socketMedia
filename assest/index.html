@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controller</title>
+
+    <style>
+      button {
+        width: 100px;
+        height: 50px;
+        border: 1px solid red;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button onclick="emitStage(1)">1</button>
+    </div>
+    <div>
+      <button onclick="emitStage(2)">2</button>
+    </div>
+    <div>
+      <button onclick="emitStage(3)">3</button>
+    </div>
+    <div>
+      <button onclick="emitStage(4)">4</button>
+    </div>
+    <div>
+      <button onclick="emitStage(5)">5</button>
+    </div>
+    <div>
+      <button onclick="emitStage(6)">6</button>
+    </div>
+
+    <p id="demo"></p>
+    <script>
+      let socket = new WebSocket("ws://" + location.hostname + ":3000/event");
+      function emitStage(n) {
+        console.log(n);
+        socket.send(JSON.stringify({ stage: n }));
+      }
+    </script>
+  </body>
+</html>
