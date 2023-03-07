@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: socket_redis
+    image: linker-modelt-server:v2
     ports:
       - "3000:3000"
     depends_on:
