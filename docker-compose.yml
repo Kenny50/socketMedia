@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: linker-modelt-server:v2
+    image: linker-modelt-server:v3
     ports:
       - "3000:3000"
     depends_on:
