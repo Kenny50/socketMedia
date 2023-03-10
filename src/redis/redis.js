@@ -1,13 +1,13 @@
 const driverAssistanceSensingRoute = require('../route/driver_assistance_sensing/driver_assistance_sensing');
 const eventAssisatnceDetectionRouteHost = require('../route/event_assistance_detection_route/event_assistance_detection_route');
 const illegalParkingEventRouteHost = require('../route/illegal_parking_event_route/illegal_parking_event_route');
-const busParkingEventRouteHost = require('../route/bus_parking_event_route/bus_parking_event_route');
+const lincenseDetectionRouteHost = require('../route/license_detection_route/license_detection_route');
 const gnssUpdateEventRouteHost = require('../route/gnss_route/gnss_update_event_route');
 const parkSpaceDetectionRouteHost = require('../route/park_space_detection/park_space_detection_route');
 
 const driver_assistance_sensing = "driver_assistance_sensing"
 const illegal_parking_event = "illegal_parking_event"
-const bus_parking_event = "bus_parking_event"
+const lincense_detection = "license_detection"
 const event_assistance_detection = "event_assistance_detection"
 const gnss_update_event = "gnss_update_event"
 const parking_space_detection = "parking_space_detection"
@@ -25,7 +25,7 @@ function installRedisPubSub(redis) {
     redis.subscribe(
         driver_assistance_sensing,
         illegal_parking_event,
-        bus_parking_event,
+        lincense_detection,
         event_assistance_detection,
         gnss_update_event,
         parking_space_detection,
@@ -50,8 +50,8 @@ function installRedisPubSub(redis) {
             case illegal_parking_event:
                 illegalParkingEventRouteHost.boradcasting(message);
                 break;
-            case bus_parking_event:
-                busParkingEventRouteHost.boradcasting(message);
+            case lincense_detection:
+                lincenseDetectionRouteHost.boradcasting(message);
                 break;
             case event_assistance_detection:
                 eventAssisatnceDetectionRouteHost.boradcasting(message);
@@ -70,7 +70,7 @@ function installRedisPubSub(redis) {
     // It's useful when the messages are binary data.
     redis.on("messageBuffer", (channel, message) => {
         // Both `channel` and `message` are buffers.
-        console.log(channel, message);
+        // console.log(channel, message);
     });
 }
 

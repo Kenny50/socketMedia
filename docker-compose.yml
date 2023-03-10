@@ -7,8 +7,10 @@ services:
       - "6379:6379"
 
   pub-simulator:
-    image: linker-modelt-redis-pub-simulator:v2.0
+    image: linker-modelt-redis-pub-simulator:v3.0
     network_mode: host
+    depends_on:
+      - redis
 
   socket-redis:
     build:
@@ -18,7 +20,6 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - redis
       - pub-simulator
     extra_hosts:
       - "host.docker.internal:host-gateway"
