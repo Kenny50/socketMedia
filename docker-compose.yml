@@ -23,5 +23,7 @@ services:
       - pub-simulator
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    volumes:
+      - /home/linker/video:/video
 
 
