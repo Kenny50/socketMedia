@@ -1,7 +1,7 @@
 const pm2 = require('pm2');
 
 
-function startRtmpLiveStream(args, videoName) {
+function startRtmpLiveStream(args, shouldAutoReStart) {
 
     pm2.connect(function (err) {
         if (err) {
@@ -13,7 +13,7 @@ function startRtmpLiveStream(args, videoName) {
             script: 'src/nms/rtmpScript.js',
             name: 'stream',
             args: args,
-            autorestart: false
+            autorestart: shouldAutoReStart
         }, function (err, apps) {
             if (err) {
                 console.error(err)

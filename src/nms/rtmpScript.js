@@ -15,7 +15,7 @@ for (let i = 0; i < args.length; i += 2) {
 
 //console.log('Parameters:', params);
 
-const ffmpegCommand = `ffmpeg -re -i ${params.path+params.name}  -c copy -f flv rtmp://host.docker.internal/stage/${params.channel}`;
+const ffmpegCommand = `ffmpeg -re -i ${params.path+params.name}  -c:v h264 -bsf:v h264_mp4toannexb  -c:a aac -f flv rtmp://host.docker.internal/stage/${params.channel}`;
 // const ffmpegCommand = `-re -i ${params.path+params.name}  -c copy -f flv rtmp://localhost/stage/8`;
 
 
