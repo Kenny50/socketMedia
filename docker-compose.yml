@@ -1,6 +1,6 @@
 version: '3'
 services:
-
+  
   redis:
     image: redis:6.2.10
     ports:
@@ -19,6 +19,7 @@ services:
     image: linker-modelt-server:v3
     ports:
       - "3000:3000"
+      - "1935:1935"
     depends_on:
       - pub-simulator
     extra_hosts:
